@@ -21,14 +21,14 @@ export const register = async (data) => {
   }
 };
 
-export const login = async (email, password) => {
-  const user = await userRepository.findByEmail(email);
+export const login = async (data) => {
+  const user = await userRepository.findByEmail(data.email);
 
   if (!user) {
     throw new AppError('Credenciales inválidas', 401);
   }
 
-  const passwordValid = await bcrypt.compare(password, user.password);
+  const passwordValid = await bcrypt.compare(data.password, user.password);
 
   if (!passwordValid) {
     throw new AppError('Credenciales inválidas', 401);

@@ -67,6 +67,19 @@ router.post('/register', registerValidator, validate, register);
  */
 router.post('/login', loginValidator, validate, login);
 
+/**
+ * @swagger
+ * /auth/me:
+ *   get:
+ *     tags:
+ *       - Auth
+ *     summary: Obtener el usuario autenticado
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Datos del usuario autenticado
+ */
 router.get('/me', authenticate, getMe);
 
 export default router;

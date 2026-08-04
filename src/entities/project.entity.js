@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../database/sequelize.js';
 
-class Task extends Model {}
+class Project extends Model {}
 
-Task.init(
+Project.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -11,33 +11,36 @@ Task.init(
       primaryKey: true,
     },
 
-    title: {
+    name: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
 
     description: {
       type: DataTypes.TEXT,
+      allowNull: false,
     },
 
-    completed: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+    status: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      defaultValue: 'active',
     },
 
-    projectId: {
+    userId: {
       type: DataTypes.UUID,
       allowNull: false,
-      field: 'project_id',
+      field: 'user_id',
     },
   },
   {
     sequelize,
-    modelName: 'Task',
-    tableName: 'tasks',
+    modelName: 'Project',
+    tableName: 'projects',
     timestamps: true,
     underscored: true,
+    paranoid: true,
   }
 );
 
-export default Task;
+export default Project;
