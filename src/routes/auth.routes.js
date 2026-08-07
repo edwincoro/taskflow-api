@@ -24,15 +24,15 @@ const router = Router();
  *           schema:
  *             type: object
  *             required:
- *               - name
- *               - email
- *               - password
+ *               - nombre
+ *               - correo
+ *               - contraseña
  *             properties:
- *               name:
+ *               nombre:
  *                 type: string
- *               email:
+ *               correo:
  *                 type: string
- *               password:
+ *               contraseña:
  *                 type: string
  *     responses:
  *       201:
@@ -54,12 +54,12 @@ router.post('/register', registerValidator, validate, register);
  *           schema:
  *             type: object
  *             required:
- *               - email
- *               - password
+ *               - correo
+ *               - contraseña
  *             properties:
- *               email:
+ *               correo:
  *                 type: string
- *               password:
+ *               contraseña:
  *                 type: string
  *     responses:
  *       200:

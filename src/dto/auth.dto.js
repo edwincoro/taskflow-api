@@ -1,14 +1,14 @@
 export function loginUserDto(body) {
   return {
-    email: body.email,
-    password: body.password,
+    email: body.correo,
+    password: body.contraseña,
   };
 }
 
 export function authUserResponseDto(user) {
   return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
+    usuarioId: user.id,
+    nombre: user.name,
+    correo: user.email,
   };
 }

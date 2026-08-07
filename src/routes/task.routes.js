@@ -26,6 +26,20 @@ const router = Router();
  *         required: true
  *         schema:
  *           type: string
+ *       - in: query
+ *         name: paginado
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *       - in: query
+ *         name: limite
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 10
  *     responses:
  *       200:
  *         description: Lista de tareas
@@ -48,12 +62,14 @@ const router = Router();
  *           schema:
  *             type: object
  *             required:
- *               - title
+ *               - titulo
  *             properties:
- *               title:
+ *               titulo:
  *                 type: string
- *               description:
+ *               descripcion:
  *                 type: string
+ *               completado:
+ *                 type: boolean
  *     responses:
  *       201:
  *         description: Tarea creada
@@ -115,11 +131,11 @@ router.post(
  *           schema:
  *             type: object
  *             properties:
- *               title:
+ *               titulo:
  *                 type: string
- *               description:
+ *               descripcion:
  *                 type: string
- *               completed:
+ *               completado:
  *                 type: boolean
  *     responses:
  *       200:

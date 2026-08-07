@@ -1,12 +1,15 @@
 import * as repository from '../repositories/project.repository.js';
 import { AppError } from '../utils/AppError.js';
+import { toProjectResponse, toProjectListResponse } from '../dto/project-response.dto.js';
 
 export const createProject = async (data) => {
-  return await repository.create(data);
+  const project = await repository.create(data);
+  return toProjectResponse(project);
 };
 
 export const findAllProjects = async (userId) => {
-  return await repository.findAllByUser(userId);
+  const projects = await repository.findAllByUser(userId);
+  return toProjectListResponse(projects);
 };
 
 export const getProjectById = async (id, userId) => {
@@ -16,7 +19,7 @@ export const getProjectById = async (id, userId) => {
     throw new AppError('Proyecto no encontrado', 404);
   }
 
-  return project;
+  return toProjectResponse(project);
 };
 
 export const updateProject = async (id, userId, data) => {
@@ -26,7 +29,8 @@ export const updateProject = async (id, userId, data) => {
     throw new AppError('Proyecto no encontrado', 404);
   }
 
-  return await repository.update(project, data);
+  const updated = await repository.update(project, data);
+  return toProjectResponse(updated);
 };
 
 export const deleteProject = async (id, userId) => {

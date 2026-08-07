@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3000
+@token = 
+@projectId = 
+
+### Listar proyectos
+GET {{baseUrl}}/projects
+Authorization: Bearer {{token}}
+
+### Crear proyecto
+POST {{baseUrl}}/projects
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nombre": "Proyecto demo",
+  "descripcion": "Descripción de prueba",
+  "estado": "active"
+}
+
+### Obtener proyecto
+GET {{baseUrl}}/projects/{{projectId}}
+Authorization: Bearer {{token}}
+
+### Actualizar proyecto
+PUT {{baseUrl}}/projects/{{projectId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nombre": "Proyecto actualizado",
+  "descripcion": "Nueva descripción",
+  "estado": "inactive"
+}
+
+### Eliminar proyecto
+DELETE {{baseUrl}}/projects/{{projectId}}
+Authorization: Bearer {{token}}

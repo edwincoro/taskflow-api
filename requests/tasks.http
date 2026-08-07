@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:3000
+@token = 
+@projectId = 
+@taskId = 
+
+### Listar tareas
+GET {{baseUrl}}/tasks/{{projectId}}
+Authorization: Bearer {{token}}
+
+### Crear tarea
+POST {{baseUrl}}/tasks/{{projectId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "titulo": "Tarea 1",
+  "descripcion": "Descripción de la tarea",
+  "completado": false
+}
+
+### Obtener tarea
+GET {{baseUrl}}/tasks/{{projectId}}/{{taskId}}
+Authorization: Bearer {{token}}
+
+### Actualizar tarea
+PUT {{baseUrl}}/tasks/{{projectId}}/{{taskId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "titulo": "Tarea modificada",
+  "descripcion": "Detalles actualizados",
+  "completado": true
+}
+
+### Marcar completa
+PATCH {{baseUrl}}/tasks/{{projectId}}/{{taskId}}/complete
+Authorization: Bearer {{token}}
+
+### Eliminar tarea
+DELETE {{baseUrl}}/tasks/{{projectId}}/{{taskId}}
+Authorization: Bearer {{token}}

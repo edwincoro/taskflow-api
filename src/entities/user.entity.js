@@ -33,12 +33,6 @@ User.init(
     tableName: 'users',
     timestamps: true,
     underscored: true,
-
-    // defaultScope: {
-    //   attributes: {
-    //     exclude: ['password'],
-    //   },
-    // },
   }
 );
 

@@ -67,7 +67,7 @@ Request → Routes → Middlewares → Controllers → Services → Repositories
 └─────────────────┬───────────────────────────────────┘
                   ▼
 ┌─────────────────────────────────────────────────────┐
-│                   Middlewares                        │
+│                   Middlewares                       │
 │  ┌──────────────┐ ┌────────────┐ ┌───────────────┐  │
 │  │ Autenticación│ │ Validación │ │ Manejo Errores│  │
 │  │    (JWT)     │ │  (express- │ │   (global)    │  │
@@ -77,17 +77,17 @@ Request → Routes → Middlewares → Controllers → Services → Repositories
                   ▼
 ┌─────────────────────────────────────────────────────┐
 │                  Controllers                        │
-│       auth.controller  │  task.controller            │
+│       auth.controller  │  task.controller           │
 └─────────────────┬───────────────────────────────────┘
                   ▼
 ┌─────────────────────────────────────────────────────┐
 │                    Services                         │
-│        auth.service   │   task.service               │
+│        auth.service   │   task.service              │
 └─────────────────┬───────────────────────────────────┘
                   ▼
 ┌─────────────────────────────────────────────────────┐
 │                  Repositories                       │
-│       user.repository  │  task.repository            │
+│       user.repository  │  task.repository           │
 └─────────────────┬───────────────────────────────────┘
                   ▼
 ┌─────────────────────────────────────────────────────┐
@@ -351,3 +351,37 @@ Generada automáticamente con **swagger-jsdoc** a partir de las anotaciones JSDo
 **Javier Onishi Sadud**
 
 
+
+---
+---
+### PROYECTO
+
+- **1. Estructura del Proyecto:**
+  - Se complemento la estructura del proyecto en Node.js con Express.js.
+- **2. Modelos y Relaciones con Sequelize:**
+  - Crear los siguientes modelos y sus relaciones.
+
+    **Resultado:**
+
+    <img src="./public/images/der.png" width="500" alt="Logo TaskFlow">
+    
+    <img src="./public/images/entities.png" width="200" alt="Logo TaskFlow">
+- **3. Investigación Requerida:**
+  - **3.1 Paginado en Sequelize**
+  - **3.2 Obtener un Proyecto con todas sus Tareas (Include):**
+  - **Resultado:**
+
+    <img src="./public/images/image1.png" width="500" alt="Logo TaskFlow">
+- **4. APIs Requerida**
+  - **Resultado:**
+
+    <img src="./public/images/api.png" width="600" alt="Logo TaskFlow">
+
+---
+## 👤 Cursante
+
+**Edwin Coro Aricoma**    
+**Celular: 70329586**    
+
+---
+---

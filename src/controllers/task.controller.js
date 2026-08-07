@@ -3,8 +3,11 @@ import { successResponse } from '../utils/response.js';
 import { createTaskDto, updateTaskDto } from '../dto/task.dto.js';
 
 export const getAllTasks = async (req, res) => {
-  const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 10;
+  const parsedPage = Number(req.query.paginado);
+  const parsedLimit = Number(req.query.limite);
+
+  const page = Number.isInteger(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+  const limit = Number.isInteger(parsedLimit) && parsedLimit > 0 ? parsedLimit : 10;
 
   const result = await taskService.findTasksByProject(
     req.params.projectId,

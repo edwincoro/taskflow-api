@@ -2,8 +2,9 @@ export function createTaskDto(params, body, userId) {
   return {
     projectId: params.projectId,
     userId,
-    title: body.title,
-    description: body.description,
+    title: body.titulo,
+    description: body.descripcion,
+    completed: body.completado,
   };
 }
 
@@ -12,7 +13,8 @@ export function updateTaskDto(params, body, userId) {
     id: params.id,
     projectId: params.projectId,
     userId,
-    ...(body.title !== undefined ? { title: body.title } : {}),
-    ...(body.description !== undefined ? { description: body.description } : {}),
+    ...(body.titulo !== undefined && { title: body.titulo }),
+    ...(body.descripcion !== undefined && { description: body.descripcion }),
+    ...(body.completado !== undefined && { completed: body.completado }),
   };
 }

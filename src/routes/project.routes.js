@@ -32,11 +32,13 @@ const router = Router();
  *           schema:
  *             type: object
  *             required:
- *               - name
+ *               - nombre
  *             properties:
- *               name:
+ *               nombre:
  *                 type: string
- *               description:
+ *               descripcion:
+ *                 type: string
+ *               estado:
  *                 type: string
  *     responses:
  *       201:
@@ -82,9 +84,11 @@ router.post('/', authenticate, createProjectValidator, validate, projectControll
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               nombre:
  *                 type: string
- *               description:
+ *               descripcion:
+ *                 type: string
+ *               estado:
  *                 type: string
  *     responses:
  *       200:

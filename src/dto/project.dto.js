@@ -1,14 +1,20 @@
 export function createProjectDto(body, userId) {
   return {
-    name: body.name,
-    description: body.description,
+    name: body.nombre,
+    description: body.descripcion,
+    status: body.estado,
     userId,
   };
 }
 
 export function updateProjectDto(body) {
+  const name = body.nombre;
+  const description = body.descripcion;
+  const status = body.estado;
+
   return {
-    ...(body.name !== undefined ? { name: body.name } : {}),
-    ...(body.description !== undefined ? { description: body.description } : {}),
+    ...(name !== undefined && { name }),
+    ...(description !== undefined && { description }),
+    ...(status !== undefined && { status }),
   };
 }

@@ -2,22 +2,10 @@ import User from './user.entity.js';
 import Project from './project.entity.js';
 import Task from './task.entity.js';
 
-User.hasMany(Project, {
-  foreignKey: 'userId',
-  as: 'projects',
-});
+User.hasMany(Project, {  foreignKey: 'userId',  as: 'projects',});
 
-Project.belongsTo(User, {
-  foreignKey: 'userId',
-  as: 'user',
-});
+Project.belongsTo(User, {  foreignKey: 'userId',  as: 'user',});
 
-Project.hasMany(Task, {
-  foreignKey: 'projectId',
-  as: 'tasks',
-});
+Project.hasMany(Task, {  foreignKey: 'projectId',  as: 'tasks',});
 
-Task.belongsTo(Project, {
-  foreignKey: 'projectId',
-  as: 'project',
-});
+Task.belongsTo(Project, {  foreignKey: 'projectId',  as: 'project',});
