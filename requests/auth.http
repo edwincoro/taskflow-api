@@ -1,0 +1,26 @@
+@baseUrl = http://localhost:3000
+@token = 
+
+### Registrar usuario
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+	"nombre": "Edwin Coro",
+	"correo": "edwin@example.com",
+	"contraseña": "secret123"
+}
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+	"correo": "edwin@example.com",
+	"contraseña": "secret123"
+}
+
+### Obtener usuario autenticado
+GET {{baseUrl}}/auth/me
+Accept: application/json
+Authorization: Bearer {{token}}

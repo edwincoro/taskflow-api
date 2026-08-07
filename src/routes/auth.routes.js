@@ -24,15 +24,15 @@ const router = Router();
  *           schema:
  *             type: object
  *             required:
- *               - name
- *               - email
- *               - password
+ *               - nombre
+ *               - correo
+ *               - contraseña
  *             properties:
- *               name:
+ *               nombre:
  *                 type: string
- *               email:
+ *               correo:
  *                 type: string
- *               password:
+ *               contraseña:
  *                 type: string
  *     responses:
  *       201:
@@ -54,12 +54,12 @@ router.post('/register', registerValidator, validate, register);
  *           schema:
  *             type: object
  *             required:
- *               - email
- *               - password
+ *               - correo
+ *               - contraseña
  *             properties:
- *               email:
+ *               correo:
  *                 type: string
- *               password:
+ *               contraseña:
  *                 type: string
  *     responses:
  *       200:
@@ -67,6 +67,19 @@ router.post('/register', registerValidator, validate, register);
  */
 router.post('/login', loginValidator, validate, login);
 
+/**
+ * @swagger
+ * /auth/me:
+ *   get:
+ *     tags:
+ *       - Auth
+ *     summary: Obtener el usuario autenticado
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Datos del usuario autenticado
+ */
 router.get('/me', authenticate, getMe);
 
 export default router;

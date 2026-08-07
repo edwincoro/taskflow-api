@@ -8,6 +8,10 @@ import swaggerSpec from './config/swagger.js';
 import { errorHandler } from './middlewares/error.middleware.js';
 import routes from './routes/index.routes.js';
 
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const app = express();
 
 app.use(cors());

@@ -1,17 +1,40 @@
 import { body } from 'express-validator';
 
 export const registerValidator = [
-  body('name').notEmpty().withMessage('El nombre es requerido'),
+  body().custom((_, { req }) => {
+    if (!req.body.nombre) {
+      throw new Error('El nombre es requerido');
+    }
+    if (!req.body.correo) {
+      throw new Error('El correo es requerido');
+    }
+    if (!req.body.contraseña) {
+      throw new Error('La contraseña es requerida');
+    }
+    return true;
+  }),
 
-  body('email').isEmail().withMessage('Correo electrónico inválido'),
+  body('correo').optional().isEmail().withMessage('Correo electrónico inválido'),
+  body('email').optional().isEmail().withMessage('Correo electrónico inválido'),
 
-  body('password')
+  body('contraseña')
+    .optional()
     .isLength({ min: 6 })
     .withMessage('La contraseña debe tener mínimo 6 caracteres'),
 ];
 
 export const loginValidator = [
-  body('email').isEmail().withMessage('Correo electrónico inválido'),
+  body().custom((_, { req }) => {
+    if (!req.body.correo) {
+      throw new Error('El correo es requerido');
+    }
+    if (!req.body.contraseña) {
+      throw new Error('La contraseña es requerida');
+    }
+    return true;
+  }),
 
-  body('password').notEmpty().withMessage('La contraseña es requerida'),
+  body('correo').optional().isEmail().withMessage('Correo electrónico inválido'),
+
+  body('contraseña').optional().notEmpty().withMessage('La contraseña es requerida'),
 ];

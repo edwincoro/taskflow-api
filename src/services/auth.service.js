@@ -3,6 +3,9 @@ import bcrypt from 'bcrypt';
 import * as userRepository from '../repositories/user.repository.js';
 import { generateToken } from '../config/jwt.js';
 import { AppError } from '../utils/AppError.js';
+import { authUserResponseDto } from '../dto/auth.dto.js';
+import { sendAccessNotification } from "../services/email.service.js";
+
 
 export const register = async (data) => {
   const hashedPassword = await bcrypt.hash(data.password, 10);
@@ -21,14 +24,14 @@ export const register = async (data) => {
   }
 };
 
-export const login = async (email, password) => {
-  const user = await userRepository.findByEmail(email);
+export const login = async (data) => {
+  const user = await userRepository.findByEmail(data.email);
 
   if (!user) {
     throw new AppError('Credenciales inválidas', 401);
   }
 
-  const passwordValid = await bcrypt.compare(password, user.password);
+  const passwordValid = await bcrypt.compare(data.password, user.password);
 
   if (!passwordValid) {
     throw new AppError('Credenciales inválidas', 401);
@@ -39,13 +42,12 @@ export const login = async (email, password) => {
     email: user.email,
   });
 
+  // TODO: 
+  // sendAccessNotification(user.name).catch(error => console.error("Error enviando correo:", error));
+
   return {
     token,
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    },
+    user: authUserResponseDto(user),
   };
 };
 

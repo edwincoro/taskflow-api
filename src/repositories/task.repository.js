@@ -1,26 +1,57 @@
 import Task from '../entities/task.entity.js';
+import Project from '../entities/project.entity.js';
 
-export const create = async (data) => {
-  return await Task.create(data);
-};
+export const create = async (projectId, userId, data) => {
+  const project = await Project.findOne({ where: { id: projectId, userId } });
 
-export const findAllByUser = async (userId) => {
-  return await Task.findAll({
-    where: {
-      userId,
-    },
-    attributes: ['id', 'title', 'description', 'completed'],
-    order: [['createdAt', 'DESC']],
+  if (!project) {
+    throw new Error('Proyecto no encontrado para este usuario');
+  }
+
+  return await Task.create({
+    ...data,
+    projectId,
   });
 };
 
-export const findById = async (id, userId) => {
+export const countByProject = async (projectId, userId) => {
+  return await Task.count({
+    where: { projectId },
+    include: [{
+      model: Project,
+      as: 'project',
+      where: { userId },
+      attributes: [],
+    }],
+  });
+};
+
+export const findAllByProject = async (projectId, userId, offset = 0, limit = 10) => {
+  return await Task.findAll({
+    where: { projectId },
+    include: [{
+      model: Project,
+      as: 'project',
+      where: { userId },
+      attributes: [],
+    }],
+    attributes: ['id', 'title', 'description', 'completed', 'createdAt'],
+    order: [['createdAt', 'DESC']],
+    offset,
+    limit,
+  });
+};
+
+export const findById = async (id, projectId, userId) => {
   return await Task.findOne({
-    where: {
-      id,
-      userId,
-    },
-    attributes: ['id', 'title', 'description', 'completed'],
+    where: { id, projectId },
+    include: [{
+      model: Project,
+      as: 'project',
+      where: { userId },
+      attributes: [],
+    }],
+    attributes: ['id', 'title', 'description', 'completed', 'createdAt'],
   });
 };
 

@@ -1,7 +1,7 @@
 export function createUserDto(body) {
   return {
-    name: body.name,
-    email: body.email,
-    password: body.password,
+    name: body.nombre,
+    email: body.correo,
+    password: body.contraseña,
   };
 }

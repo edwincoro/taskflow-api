@@ -1,7 +1,9 @@
 export function toUserResponse(user) {
+  if (!user) return null;
+
   return {
-    id: user.id,
-    name: user.name,
-    email: user.email,
+    usuarioId: user.id,
+    nombre: user.name,
+    correo: user.email,
   };
 }
