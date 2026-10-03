@@ -43,6 +43,7 @@ export const updateTask = async (data) => {
   const updated = await repository.update(task, {
     ...(data.title !== undefined ? { title: data.title } : {}),
     ...(data.description !== undefined ? { description: data.description } : {}),
+    ...(data.completed !== undefined ? { completed: data.completed } : {}),
   });
 
   return toTaskResponse(updated);
